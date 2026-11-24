@@ -20,15 +20,16 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: return
         key_lst = pg.key.get_pressed() #練習4
-        kk_rct.move_ip((-1,0)) #演習1
+        dx, dy = -1, 0 #演習2
         if key_lst[pg.K_UP]: #練習10-4
             kk_rct.centery -= 1
         if key_lst[pg.K_DOWN]:
             kk_rct.centery += 1
         if key_lst[pg.K_RIGHT]:
-            kk_rct.centerx += 3
+            kk_rct.centerx += 2
         if key_lst[pg.K_LEFT]:
             kk_rct.centerx -= 1 
+        kk_rct.move_ip((dx, dy)) #演習2
         x = tmr%3200 #練習9    
         screen.blit(bg_img, [-x, 0]) #練習2
         screen.blit(bg_img2, [-x+1600, 0]) #練習7
