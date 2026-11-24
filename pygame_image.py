@@ -13,17 +13,27 @@ def main():
     kk_img = pg.image.load("fig/3.png") #練習3
     bg_img2 = pg.transform.flip(bg_img,True,False)#練習8
     kk_img = pg.transform.flip(kk_img,True,False) #練習3
+    kk_rct = kk_img.get_rect() #練習10-1
+    kk_rct.center = (300, 200) #練習10-2
     tmr = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
-
+        key_lst = pg.key.get_pressed() #練習4
+        if key_lst[pg.K_UP]: #練習5
+            kk_rct.centery -= 1 #練習5
+        if key_lst[pg.K_DOWN]: #練習5
+            kk_rct.centery += 1 #練習5
+        if key_lst[pg.K_RIGHT]: #練習5
+            kk_rct.centerx += 3 #練習5
+        if key_lst[pg.K_LEFT]: #練習5
+            kk_rct.centerx -= 1 #練習5
         x = tmr%3200 #練習9    
         screen.blit(bg_img, [-x, 0]) #練習2
         screen.blit(bg_img2, [-x+1600, 0]) #練習7
         screen.blit(bg_img, [-x+3200, 0]) #練習7
         screen.blit(bg_img2, [-x+4800, 0]) #練習7
-        screen.blit(kk_img, [300, 200]) #練習4
+        screen.blit(kk_img, kk_rct) #練習10-5
 
         pg.display.update()
         tmr += 1        
